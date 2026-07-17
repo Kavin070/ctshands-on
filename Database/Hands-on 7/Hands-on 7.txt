@@ -1,0 +1,157 @@
+===================================================
+Hands-On 7
+Alembic Commands
+===================================================
+
+
+#92
+
+alembic init migrations
+
+
+
+#93
+
+Edit alembic.ini
+
+sqlalchemy.url = mysql+mysqlconnector://root:YOUR_PASSWORD@localhost/college_db_orm
+
+
+
+#94
+
+Edit migrations/env.py
+
+from models import Base
+
+target_metadata = Base.metadata
+
+
+
+#95
+
+alembic revision --autogenerate -m "initial schema"
+
+
+
+#96
+
+Open
+
+migrations/versions/
+
+Verify
+
+upgrade()
+
+downgrade()
+
+
+
+#97
+
+alembic upgrade head
+
+
+
+alembic current
+
+
+
+===================================================
+Task 2
+===================================================
+
+
+
+#98
+
+Add column
+
+is_active = Column(Boolean, default=True)
+
+
+
+#99
+
+alembic revision --autogenerate -m "add is_active to students"
+
+
+
+#100
+
+Verify
+
+upgrade()
+
+downgrade()
+
+
+
+#101
+
+alembic upgrade head
+
+
+
+#102
+
+Add CourseSchedule model
+
+schedule_id
+
+course_id
+
+day_of_week
+
+start_time
+
+end_time
+
+
+
+Generate migration
+
+alembic revision --autogenerate -m "course schedule table"
+
+
+
+Apply
+
+alembic upgrade head
+
+
+
+#103
+
+alembic history --verbose
+
+
+
+===================================================
+Task 3
+===================================================
+
+
+
+#104
+
+alembic current
+
+
+
+#105
+
+alembic downgrade -1
+
+
+
+#106
+
+alembic downgrade base
+
+
+
+#107
+
+alembic upgrade head
