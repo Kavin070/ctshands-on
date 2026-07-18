@@ -1,0 +1,35 @@
+from selenium.webdriver.common.by import By
+
+from pages.base_page import BasePage
+
+
+class SimpleFormPage(BasePage):
+
+    MESSAGE_INPUT = (By.ID, "user-message")
+
+    SUBMIT_BUTTON = (
+
+        By.XPATH,
+
+        "//button[contains(text(),'Get Checked Value')]"
+
+    )
+
+    DISPLAY_MESSAGE = (By.ID, "message")
+
+
+    def enter_message(self, text):
+
+        self.wait_for_element(self.MESSAGE_INPUT).clear()
+
+        self.wait_for_element(self.MESSAGE_INPUT).send_keys(text)
+
+
+    def click_submit(self):
+
+        self.wait_for_element(self.SUBMIT_BUTTON).click()
+
+
+    def get_displayed_message(self):
+
+        return self.wait_for_element(self.DISPLAY_MESSAGE).text
